@@ -2,12 +2,17 @@
 export default {
   content: [
     './components/**/*.{js,vue,ts}',
-    './layouts/**/*.vue',
     './pages/**/*.vue',
     './plugins/**/*.{js,ts}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        primary: '#f2f1e4',
+        secondary : '#184dc4',
+        filter : '#85a6ea',
+      },      
+    },
   },
   corePlugins: {
     textOpacity: false,
