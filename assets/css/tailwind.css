@@ -3,3 +3,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: "NeueMontreal-Regular";
+    src: url("../fonts/NeueMontreal Regular.woff2") format("woff2");
+  }
+  @font-face {
+    font-family: "Pizzato-D";
+    src: url("../fonts/Pizzato D.woff2") format("woff2");
+  }
+}

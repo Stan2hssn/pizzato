@@ -52,6 +52,7 @@
 <script setup>
 import gsap from "gsap"
 import { CustomEase } from "gsap/CustomEase" // Register the CustomEase plugin
+gsap.registerPlugin(CustomEase)
 
 function enter() {
   if (gsap.isTweening(".path_1", ".path_2")) return
