@@ -1,6 +1,8 @@
 <template>
   <div id="viewport"></div>
-  <slot />
+  <ThePreloader>
+    <slot />
+  </ThePreloader>
 </template>
 <script setup>
 onMounted(() => {

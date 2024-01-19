@@ -5,12 +5,32 @@
 @tailwind utilities;
 
 @layer base {
-  @font-face {
-    font-family: "NeueMontreal-Regular";
-    src: url("../fonts/NeueMontreal Regular.woff2") format("woff2");
-  }
-  @font-face {
-    font-family: "Pizzato-D";
-    src: url("../fonts/Pizzato D.woff2") format("woff2");
-  }
+    @font-face {
+        font-family: 'NeueMontreal-Regular';
+        src: url('../fonts/NeueMontreal Regular.woff2') format('woff2');
+    }
+    @font-face {
+        font-family: 'Pizzato-D';
+        src: url('../fonts/Pizzato D.woff2') format('woff2');
+    }
+
+    html.lenis {
+        height: auto;
+    }
+
+    .lenis.lenis-smooth {
+        scroll-behavior: auto !important;
+    }
+
+    .lenis.lenis-smooth [data-lenis-prevent] {
+        overscroll-behavior: contain;
+    }
+
+    .lenis.lenis-stopped {
+        overflow: hidden;
+    }
+
+    .lenis.lenis-scrolling iframe {
+        pointer-events: none;
+    }
 }

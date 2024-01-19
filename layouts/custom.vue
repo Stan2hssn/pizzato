@@ -1,5 +1,5 @@
 <template>
-  <main class="relative w-full h-[200vh] items-center px-offset">
+  <main class="relative w-full h-auto items-center px-offset">
     <Navbar />
     <Line />
     <HeadLine />
