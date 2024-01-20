@@ -1,19 +1,15 @@
 import Lenis from '@studio-freight/lenis'
 
-const scroller = false
-
 export function useSmoothScroll(scroller) {
     const scrollLenis = new Lenis({
         duration: 1,
     })
 
-   
-
     scroller ? scrollLenis.start() : scrollLenis.stop()
 
     gsap.ticker.add((time)=>{
 		scrollLenis.raf(time * 1000)
-	})
+	} )
 
 	gsap.ticker.lagSmoothing(0)
 

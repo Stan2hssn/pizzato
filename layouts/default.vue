@@ -1,11 +1,9 @@
 <template>
-  <div id="viewport"></div>
-  <ThePreloader>
-    <slot />
-  </ThePreloader>
+  <div id="app">
+    <ThePreloader>
+      <slot />
+    </ThePreloader>
+  </div>
 </template>
-<script setup>
-onMounted(() => {
-  useSmoothScroll()
-})
-</script>
+
+<script setup></script>

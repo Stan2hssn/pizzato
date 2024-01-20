@@ -1,38 +1,42 @@
 <template>
   <div
+    v-if="show"
     :style="{
-      transform: `translateY(${elTranslate}%) scale(${elScale})`,
-      display: `${elDisplay}`,
+      transform: `translateY(${LoadTranslate}%)`,
     }"
     class="flex items-center justify-center w-screen h-screen">
-    <img :src="source" alt="" />
+    <img
+      :style="{
+        transform: `scale(${elScale})`,
+      }"
+      :src="source" />
   </div>
-  <main
-    :style="{ transform: `translateY(${slotTranslate}%)` }"
-    class="relative w-full h-[200vh] items-center px-offset">
+  <div
+    id="view"
+    :style="{ transform: `translateY(${headerTranslate}%)` }"
+    class="relative w-full h-screen items-center px-offset">
     <slot />
-  </main>
+  </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue"
 import source from "gif/Load.gif"
 
+import { ref, onMounted } from "vue"
+
 // Reactive reference for the CSS variable value
-const elTranslate = ref(100)
-const slotTranslate = ref(0)
+const LoadTranslate = ref(100)
+const headerTranslate = ref(0)
 const elScale = ref(0.5)
-const elDisplay = ref("flex")
+const show = ref(true)
 
 const animationProps = {
   translate: 100,
   scale: 0.5,
-  display: "flex",
 }
 
 onMounted(() => {
   const tl = gsap.timeline()
-
   const duration = 1.5
 
   tl.to(animationProps, {
@@ -42,9 +46,10 @@ onMounted(() => {
     scale: 0.8,
     onStart: () => {
       window.scrollTo(0, false)
+      useSmoothScroll()
     },
     onUpdate: () => {
-      elTranslate.value = animationProps.translate
+      LoadTranslate.value = animationProps.translate
       elScale.value = animationProps.scale
     },
   })
@@ -54,18 +59,17 @@ onMounted(() => {
       ease: CustomEase.create("in", "M0,0 C0.299,0 0.192,0.726 0.318,0.852 0.45,0.984 0.504,1 1,1 "),
       delay: 0.5,
       onUpdate: () => {
-        elTranslate.value = animationProps.translate
-        slotTranslate.value = animationProps.translate / 2
+        LoadTranslate.value = animationProps.translate
+        headerTranslate.value = animationProps.translate
       },
     })
     .to(animationProps, {
       duration: 0,
       ease: "custom",
-      display: "none",
       delay: 0.1,
       onUpdate: () => {
-        elDisplay.value = animationProps.display
-        slotTranslate.value = "0"
+        show.value = false
+        headerTranslate.value = 0
       },
       onComplete: () => {
         useSmoothScroll(true)

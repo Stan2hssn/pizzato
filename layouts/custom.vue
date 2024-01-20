@@ -1,10 +1,7 @@
 <template>
-  <main class="relative w-full h-auto items-center px-offset">
-    <Navbar />
-    <Line />
-    <HeadLine />
-
-    <slot />
-  </main>
+  <Navbar />
+  <Line />
+  <HeadLine />
+  <slot />
 </template>
 <script setup></script>
