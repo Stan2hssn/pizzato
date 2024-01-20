@@ -1,7 +1,7 @@
 import { resolve } from "path"
 export default defineNuxtConfig({
   css: ["styles/tailwind.css"],
-  modules: ["@nuxtjs/tailwindcss"],
+  modules: ["@nuxtjs/tailwindcss", "@pinia/nuxt"],
   devtools: { enabled: true },
   alias: {
     images: resolve(__dirname, "./static/img"),
