@@ -12,13 +12,12 @@
       :src="source" />
   </div>
 
-  <div v-if="show" ref="slogan" class="absolute opacity-0 bottom-0 w-full z-50 overflow-hidden">
-    <div class="flex flex-row justify-between py-offset">
-      <Button name="Menu" />
-      <Button name="Contatti" />
-    </div>
+  <div v-if="show" ref="slogan" class="absolute flex top-0 w-full h-24 justify-center items-center opacity-0">
+    <p class="relative text-center leading-[.9rem] text-slogan text-secondary py-2">
+      FORNITURE IDRAULICHE E TERMOSANITARIE. <br />
+      ARREDOBAGNO.
+    </p>
   </div>
-
   <div
     id="view"
     :style="{ transform: `translateY(${mainTranslate}%)` }"
@@ -50,7 +49,7 @@ const elScale = ref<number>(0.5)
 const animationProps = <{ translate: number; mainTranslate: number; headerTranslate: number; scale: number }>{
   translate: 100,
   mainTranslate: 0,
-  headerTranslate: -100,
+  headerTranslate: -200,
   scale: 0.5,
 }
 
