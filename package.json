@@ -22,8 +22,5 @@
     "@studio-freight/lenis": "^1.0.33",
     "gsap": "^3.12.4",
     "pinia": "^2.1.7"
-  },
-  "overrides": {
-    "vue": "latest"
   }
 }
