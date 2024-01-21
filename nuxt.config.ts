@@ -9,7 +9,7 @@ export default defineNuxtConfig({
     gif: resolve(__dirname, "./static/gif"),
   },
   imports: {
-    dirs: ["utils"],
+    dirs: ["utils", "store"],
   },
   components: [
     {

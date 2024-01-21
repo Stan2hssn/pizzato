@@ -11,7 +11,7 @@
       ]">
       <img
         :src="source"
-        alt="img"
+        alt="images of the company"
         class="w-full h-full object-cover grayscale group-hover:grayscale-0 duration-600 ease-in-out" />
       <div
         class="absolute top-0 left-0 w-full h-full z-10 bg-filter mix-blend-hard-light group-hover:opacity-0 duration-600 ease-in-out"></div>
@@ -19,7 +19,7 @@
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import Rubinet from "/static/img/01_Rubinet.webp"
 import Bagno from "/static/img/02_Bagno.webp"
 import Bagno2 from "/static/img/03_Bagno_2.webp"
@@ -30,12 +30,12 @@ const className = {
   default: "translate-y-1/2 hover:translate-y-1/3",
 }
 
-const active = ref(null)
+const active = ref<number | null>(null)
 
-function getTranslateClass(id) {
-  if (id === active.value) {
+function getTranslateClass(id: number) {
+  if (id == active.value) {
     return className.active
-  } else if (id === 1 && active.value === null) {
+  } else if (id == 1 && active.value == null) {
     return className.main
   } else {
     return className.default

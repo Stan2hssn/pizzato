@@ -11,6 +11,6 @@
     </section>
   </NuxtLayout>
 </template>
-<script setup>
+<script lang="ts" setup>
 const layout = "custom"
 </script>

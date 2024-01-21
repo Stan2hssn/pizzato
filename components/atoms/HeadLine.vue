@@ -49,13 +49,13 @@
     </svg>
   </div>
 </template>
-<script setup>
+<script lang="ts" setup>
 import gsap from "gsap"
 import { CustomEase } from "gsap/CustomEase" // Register the CustomEase plugin
 gsap.registerPlugin(CustomEase)
 
 function enter() {
-  if (gsap.isTweening(".path_1", ".path_2")) return
+  if (gsap.isTweening(".path_1") || gsap.isTweening(".path_2")) return
   const ease = CustomEase.create("custom", "M0,0 C0.6,0 0.093,1 1,1")
   const timing = 1
   // First, kill any existing animations on .path_1 and .path_2

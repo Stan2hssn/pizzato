@@ -52,7 +52,7 @@ export default {
           '-webkit-font-smoothing': 'antialiased'
         },
         'body': {
-          'overflow-x': 'hidden', 
+          'overflow': 'hidden', 
         },
       });
     })

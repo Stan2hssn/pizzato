@@ -12,11 +12,13 @@
     >
   </button>
 </template>
-<script setup>
-const props = defineProps({
-  name: {
-    type: String,
-    default: "Click me!",
-  },
-})
+<script lang="ts" setup>
+withDefaults(
+  defineProps<{
+    name?: string
+  }>(),
+  {
+    name: "Click me!",
+  }
+)
 </script>

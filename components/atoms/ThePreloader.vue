@@ -2,7 +2,7 @@
   <div
     v-if="show"
     :style="{
-      transform: `translateY(${LoadTranslate}%)`,
+      transform: `translateY(${loadTranslate}%)`,
     }"
     class="flex items-center justify-center w-screen h-screen">
     <img
@@ -11,69 +11,123 @@
       }"
       :src="source" />
   </div>
+
+  <div v-if="show" ref="slogan" class="absolute opacity-0 bottom-0 w-full z-50 overflow-hidden">
+    <div class="flex flex-row justify-between py-offset">
+      <Button name="Menu" />
+      <Button name="Contatti" />
+    </div>
+  </div>
+
   <div
     id="view"
-    :style="{ transform: `translateY(${headerTranslate}%)` }"
+    :style="{ transform: `translateY(${mainTranslate}%)` }"
     class="relative w-full h-screen items-center px-offset">
     <slot />
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import source from "gif/Load.gif"
 
 import { ref, onMounted } from "vue"
 
 // Reactive reference for the CSS variable value
-const LoadTranslate = ref(100)
-const headerTranslate = ref(0)
-const elScale = ref(0.5)
-const show = ref(true)
+const FIRST_DURATION = 1.5
+const SECOND_DURATION = 1
 
-const animationProps = {
+const loadTranslate = ref<number>(100)
+const show = ref<boolean>(true)
+const mainTranslate = ref<number>(0)
+const slogan = ref<HTMLElement | null>(null)
+const windowHeight = ref<number>(0)
+const sloganHeight = ref<number>(0)
+const offset = ref<number>(0)
+const headerTranslate = useHeaderTranslate()
+
+const elScale = ref<number>(0.5)
+
+const animationProps = <{ translate: number; mainTranslate: number; headerTranslate: number; scale: number }>{
   translate: 100,
+  mainTranslate: 0,
+  headerTranslate: -100,
   scale: 0.5,
 }
 
 onMounted(() => {
+  setupAnimation()
+})
+
+function setupAnimation() {
+  useSmoothScroll(false)
+
+  windowHeight.value = window.innerHeight
+  sloganHeight.value = slogan.value?.offsetHeight ?? 0
+  offset.value = (sloganHeight.value / windowHeight.value) * 100
+
   const tl = gsap.timeline()
-  const duration = 1.5
+
+  const customEase = CustomEase.create("in", "M0,0 C0.299,0 0.192,0.726 0.318,0.852 0.45,0.984 0.504,1 1,1 ")
 
   tl.to(animationProps, {
-    duration: duration,
+    duration: FIRST_DURATION,
     ease: "power4.out",
     translate: 0,
     scale: 0.8,
     onStart: () => {
-      window.scrollTo(0, false)
-      useSmoothScroll()
+      window.scrollTo(0, 0)
     },
     onUpdate: () => {
-      LoadTranslate.value = animationProps.translate
+      loadTranslate.value = animationProps.translate
       elScale.value = animationProps.scale
     },
   })
+    .to(
+      animationProps,
+      {
+        duration: SECOND_DURATION,
+        ease: "power4.out",
+        mainTranslate: -offset.value,
+        onUpdate: () => {
+          mainTranslate.value = animationProps.mainTranslate
+        },
+      },
+      "-=.5"
+    )
     .to(animationProps, {
-      duration: duration,
-      translate: -100,
-      ease: CustomEase.create("in", "M0,0 C0.299,0 0.192,0.726 0.318,0.852 0.45,0.984 0.504,1 1,1 "),
+      duration: FIRST_DURATION,
+      translate: -200,
+      mainTranslate: -100,
+      ease: customEase,
       delay: 0.5,
       onUpdate: () => {
-        LoadTranslate.value = animationProps.translate
-        headerTranslate.value = animationProps.translate
+        loadTranslate.value = animationProps.translate
+        mainTranslate.value = animationProps.mainTranslate
       },
     })
+    .to(
+      animationProps,
+      {
+        duration: SECOND_DURATION,
+        headerTranslate: 0,
+        ease: "power3.out",
+        delay: 0.1,
+        onUpdate: () => {
+          headerTranslate.value = animationProps.headerTranslate
+        },
+      },
+      "-=.9"
+    )
     .to(animationProps, {
       duration: 0,
-      ease: "custom",
       delay: 0.1,
       onUpdate: () => {
         show.value = false
-        headerTranslate.value = 0
+        mainTranslate.value = 0
       },
       onComplete: () => {
         useSmoothScroll(true)
       },
     })
-})
+}
 </script>
