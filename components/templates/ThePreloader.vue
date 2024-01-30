@@ -20,8 +20,8 @@
   </div>
   <div
     id="view"
-    :style="{ transform: `translateY(${mainTranslate}%)` }"
-    class="relative w-full h-screen items-center px-offset">
+    :style="{ transform: `translateY(${mainTranslate}px)` }"
+    class="relative w-full items-center px-offset">
     <slot />
   </div>
 </template>
@@ -42,11 +42,16 @@ const slogan = ref<HTMLElement | null>(null)
 const windowHeight = ref<number>(0)
 const sloganHeight = ref<number>(0)
 const offset = ref<number>(0)
-const headerTranslate = useHeaderTranslate()
-
 const elScale = ref<number>(0.5)
 
-const animationProps = <{ translate: number; mainTranslate: number; headerTranslate: number; scale: number }>{
+const animationProps = <
+  {
+    translate: number
+    mainTranslate: number
+    headerTranslate: number
+    scale: number
+  }
+>{
   translate: 100,
   mainTranslate: 0,
   headerTranslate: -200,
@@ -62,7 +67,7 @@ function setupAnimation() {
 
   windowHeight.value = window.innerHeight
   sloganHeight.value = slogan.value?.offsetHeight ?? 0
-  offset.value = (sloganHeight.value / windowHeight.value) * 100
+  offset.value = windowHeight.value - sloganHeight.value - windowHeight.value
 
   const tl = gsap.timeline()
 
@@ -86,7 +91,7 @@ function setupAnimation() {
       {
         duration: SECOND_DURATION,
         ease: "power4.out",
-        mainTranslate: -offset.value,
+        mainTranslate: offset.value,
         onUpdate: () => {
           mainTranslate.value = animationProps.mainTranslate
         },
@@ -96,7 +101,7 @@ function setupAnimation() {
     .to(animationProps, {
       duration: FIRST_DURATION,
       translate: -200,
-      mainTranslate: -100,
+      mainTranslate: -windowHeight.value,
       ease: customEase,
       delay: 0.5,
       onUpdate: () => {
@@ -112,7 +117,9 @@ function setupAnimation() {
         ease: "power3.out",
         delay: 0.1,
         onUpdate: () => {
-          headerTranslate.value = animationProps.headerTranslate
+          if (general.headerTranslate) {
+            general.headerTranslate = animationProps.headerTranslate
+          }
         },
       },
       "-=.9"

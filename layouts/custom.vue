@@ -1,7 +1,6 @@
 <template>
-  <Navbar />
-  <Line />
-  <HeadLine />
+  <Header />
   <slot />
+  <Footer />
 </template>
 <script setup></script>

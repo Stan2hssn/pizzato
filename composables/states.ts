@@ -1,1 +1,9 @@
-export const useHeaderTranslate = () => useState<number>("headerTranslate", () => -200)
+export const useMenu = () => {
+  const menuActive = useState<boolean>("menuActive", () => false)
+
+  function setMenuActive(value: boolean) {
+    menuActive.value = value
+  }
+
+  return { menuActive, setMenuActive }
+}

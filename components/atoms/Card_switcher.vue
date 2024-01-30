@@ -1,12 +1,14 @@
 <template>
   <div
-    class="grid grid-cols-3 gap-10 justify-between w-full h-auto pb-10 overflow-hidden border-b border-secondary">
+    class="grid grid-cols-3 gap-10 justify-between w-full h-auto pb-10 overflow-hidden border-b border-secondary z-10">
     <div
       v-for="(source, id) in sources"
       :key="id"
       @click="active = id"
+      @mouseover="setHover('Click!', 1)"
+      @mouseleave="setHover('Click!', 0)"
       :class="[
-        'relative flex w-full rounded-3xl overflow-hidden z-0 duration-1000 ease-in-out group',
+        'relative flex w-full rounded-3xl overflow-hidden z-0 duration-1000 ease-in-out hover:cursor-none group',
         getTranslateClass(id),
       ]">
       <img
@@ -20,9 +22,16 @@
 </template>
 
 <script lang="ts" setup>
-import Rubinet from "/static/img/01_Rubinet.webp"
-import Bagno from "/static/img/02_Bagno.webp"
-import Bagno2 from "/static/img/03_Bagno_2.webp"
+import { ref } from "vue"
+
+import Rubinet from "images/01_Rubinet.webp"
+import Bagno from "images/02_Bagno.webp"
+import Bagno2 from "images/03_Bagno_2.webp"
+
+function setHover(text: string, ref: number) {
+  general.mouseOver = ref
+  general.currentHover = text
+}
 
 const className = {
   main: "translate-y-1/3 hover:translate-y-1/3",

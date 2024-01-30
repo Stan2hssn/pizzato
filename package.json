@@ -1,26 +1,26 @@
 {
-  "name": "nuxt-app",
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "build": "nuxt build",
-    "dev": "nuxt dev",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
-  },
-  "devDependencies": {
-    "@nuxtjs/tailwindcss": "^6.10.4",
-    "nuxt": "^3.8.2",
-    "prettier": "^3.1.1",
-    "prettier-plugin-tailwindcss": "^0.5.11",
-    "vue": "^3.4.6",
-    "vue-router": "^4.2.5"
-  },
-  "dependencies": {
-    "@pinia/nuxt": "^0.5.1",
-    "@studio-freight/lenis": "^1.0.33",
-    "gsap": "^3.12.4",
-    "pinia": "^2.1.7"
-  }
+    "name": "nuxt-app",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "build": "nuxt build",
+        "dev": "nuxt dev",
+        "generate": "nuxt generate",
+        "preview": "nuxt preview",
+        "postinstall": "nuxt prepare"
+    },
+    "devDependencies": {
+        "@nuxtjs/tailwindcss": "^6.10.4",
+        "@types/gsap": "^3.0.0",
+        "nuxt": "^3.8.2",
+        "prettier": "^3.2.4",
+        "prettier-plugin-tailwindcss": "^0.5.11",
+        "vue": "^3.4.6",
+        "vue-router": "^4.2.5"
+    },
+    "dependencies": {
+        "@studio-freight/lenis": "^1.0.33",
+        "gsap": "^3.12.4",
+        "tailwindcss": "^3.4.1"
+    }
 }

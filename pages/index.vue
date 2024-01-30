@@ -9,6 +9,7 @@
         per l’ambiente domestico e aziendale.</TextContainer
       >
     </section>
+    <PageLink />
   </NuxtLayout>
 </template>
 <script lang="ts" setup>
