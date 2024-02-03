@@ -1,6 +1,7 @@
 <template>
-  <a href="/" class="relative flex w-full -z-10" @mouseenter="enter">
+  <NuxtLink class="relative flex w-full" href="/">
     <svg
+      @mouseenter="enter"
       class="absolute top-0 left-0 w-full flex"
       width="1796"
       viewBox="0 0 1796 219"
@@ -47,8 +48,9 @@
         d="M1642.33 0H1629.57C1573.83 0 1537.96 10.8 1515.01 26.29C1481.69 48.77 1475.62 81.12 1475.62 104.62V113.13C1475.62 134.07 1480.5 162.6 1505.57 184.76C1527.68 204.31 1565.51 218.89 1629.57 218.89H1642.33C1778.7 218.89 1796 152.54 1796 113.14V104.63C1796 64.94 1778.42 0 1642.33 0ZM1558.98 109.99V106.59C1558.98 84.19 1572.3 56.69 1635.81 56.69C1676.74 56.69 1697.04 68.53 1706.16 83C1710.93 90.58 1712.64 98.88 1712.64 106.58V110.55C1712.64 121.18 1709.47 133.12 1699.67 142.81C1688.56 153.79 1668.95 161.87 1635.82 161.87C1585.28 161.87 1566.2 142.32 1560.78 123.14C1559.51 118.65 1558.99 114.18 1558.99 109.98H1558.98V109.99Z"
         :fill="themColor[theme][1]" />
     </svg>
-  </a>
+  </NuxtLink>
 </template>
+
 <script lang="ts" setup>
 import gsap from "gsap"
 import { CustomEase } from "gsap/CustomEase" // Register the CustomEase plugin

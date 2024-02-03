@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="show"
+    v-if="general.isPreloaderVisible"
     :style="{
       transform: `translateY(${loadTranslate}%)`,
     }"
@@ -12,7 +12,10 @@
       :src="source" />
   </div>
 
-  <div v-if="show" ref="slogan" class="absolute flex top-0 w-full h-24 justify-center items-center opacity-0">
+  <div
+    v-if="general.isPreloaderVisible"
+    ref="slogan"
+    class="absolute flex top-0 w-full h-24 justify-center items-center opacity-0">
     <p class="relative text-center leading-[.9rem] text-slogan text-secondary py-2">
       FORNITURE IDRAULICHE E TERMOSANITARIE. <br />
       ARREDOBAGNO.
@@ -36,7 +39,6 @@ const FIRST_DURATION = 1.5
 const SECOND_DURATION = 1
 
 const loadTranslate = ref<number>(100)
-const show = ref<boolean>(true)
 const mainTranslate = ref<number>(0)
 const slogan = ref<HTMLElement | null>(null)
 const windowHeight = ref<number>(0)
@@ -65,9 +67,8 @@ onMounted(() => {
 function setupAnimation() {
   useSmoothScroll(false)
 
-  windowHeight.value = window.innerHeight
   sloganHeight.value = slogan.value?.offsetHeight ?? 0
-  offset.value = windowHeight.value - sloganHeight.value - windowHeight.value
+  offset.value = general.windowHeight - sloganHeight.value - general.windowHeight
 
   const tl = gsap.timeline()
 
@@ -80,6 +81,8 @@ function setupAnimation() {
     scale: 0.8,
     onStart: () => {
       window.scrollTo(0, 0)
+      document.body.style.overflow = "hidden"
+      document.body.style.pointerEvents = "none"
     },
     onUpdate: () => {
       loadTranslate.value = animationProps.translate
@@ -101,7 +104,7 @@ function setupAnimation() {
     .to(animationProps, {
       duration: FIRST_DURATION,
       translate: -200,
-      mainTranslate: -windowHeight.value,
+      mainTranslate: -general.windowHeight,
       ease: customEase,
       delay: 0.5,
       onUpdate: () => {
@@ -128,11 +131,14 @@ function setupAnimation() {
       duration: 0,
       delay: 0.1,
       onUpdate: () => {
-        show.value = false
+        general.isPreloaderVisible = false
         mainTranslate.value = 0
       },
       onComplete: () => {
         useSmoothScroll(true)
+        general.isPreloaderVisible = false
+        document.body.style.overflow = "auto"
+        document.body.style.pointerEvents = "auto"
       },
     })
 }

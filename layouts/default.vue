@@ -1,6 +1,7 @@
 <template>
-  <div id="app" class="h-[--height]">
+  <div id="app">
     <Cursor />
+    <Transitor />
     <Menu :isActive="menuActive" />
 
     <ThePreloader>

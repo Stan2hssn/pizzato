@@ -1,6 +1,6 @@
 <template>
   <div
-    class="grid grid-cols-3 gap-10 justify-between w-full h-auto pb-10 overflow-hidden border-b border-secondary z-10">
+    class="grid grid-cols-3 gap-10 justify-between w-full h-auto pb-10 overflow-hidden border-b border-secondary">
     <div
       v-for="(source, id) in sources"
       :key="id"
@@ -8,7 +8,7 @@
       @mouseover="setHover('Click!', 1)"
       @mouseleave="setHover('Click!', 0)"
       :class="[
-        'relative flex w-full rounded-3xl overflow-hidden z-0 duration-1000 ease-in-out hover:cursor-none group',
+        'relative flex w-full rounded-3xl overflow-hidden z-10 duration-1000 ease-in-out hover:cursor-none group',
         getTranslateClass(id),
       ]">
       <img

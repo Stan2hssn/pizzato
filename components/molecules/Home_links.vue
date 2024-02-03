@@ -37,22 +37,22 @@ function setHover(text: string, ref: number) {
 const links = <{ servizi: string; link: string; path: string }[]>[
   {
     servizi: "Arredobagno",
-    link: "servizi/Arredobagno",
+    link: "/servizi/Arredobagno",
     path: Arredobagno,
   },
   {
     servizi: "Comfort Ambiente",
-    link: "servizi/comfortAmbiente",
+    link: "/servizi/comfortAmbiente",
     path: comfortAmbiente,
   },
   {
     servizi: "Trattamento Acqua",
-    link: "servizi/trattamentoAcqua",
+    link: "/servizi/trattamentoAcqua",
     path: trattamentoAcqua,
   },
   {
     servizi: "Impiantistica",
-    link: "servizi/impiantistica",
+    link: "/servizi/impiantistica",
     path: impiantistica,
   },
 ]

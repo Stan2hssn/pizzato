@@ -1,7 +1,7 @@
 <template>
   <div class="page relative min-h-[100svh]">
     <NuxtLayout :name="layout">
-      <section class="page flex flex-col">{{ $route.name }}</section>
+      <section class="page flex flex-col -mt-16">{{ $route.name }}</section>
     </NuxtLayout>
   </div>
 </template>
@@ -11,8 +11,8 @@ definePageMeta({
     name: "page",
     mode: "out-in",
   },
-  name: "Arredobagno",
-  key: "005",
+  name: "Comfort Ambiente",
+  key: "006",
 })
 const layout = "custom"
 </script>
